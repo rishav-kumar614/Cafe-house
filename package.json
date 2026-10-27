@@ -1,0 +1,21 @@
+{
+  "name": "ember-and-bean",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Immersive 3D multi-cuisine cafe website with menu, cart, ordering and admin.",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n server,client -c yellow,cyan \"npm run dev -w server\" \"npm run dev -w client\"",
+    "build": "npm run build -w client",
+    "start": "npm run start -w server",
+    "seed": "npm run seed -w server",
+    "create-admin": "npm run create-admin -w server",
+    "test": "npm test -w server"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.6"
+  }
+}
