@@ -303,7 +303,7 @@ Set `NODE_ENV=production`, `MONGODB_URI`, `JWT_SECRET`, `COOKIE_SECURE=true` (be
 
 ### Deploying to Vercel
 
-The repo is Vercel-ready (`vercel.json` builds the client to `client/dist`, and `api/index.js`
+The repo is Vercel-ready (`vercel.json` builds the client to `dist`, and `api/index.js`
 runs the Express API as a serverless function).
 
 1. Create a free **MongoDB Atlas** cluster (Vercel cannot run the embedded database). Add a

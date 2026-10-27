@@ -54,7 +54,7 @@ export const config = {
   uploadDir: path.resolve(SERVER_ROOT, env.UPLOAD_DIR || 'uploads'),
   maxImageBytes: int(env.MAX_IMAGE_MB, 3) * 1024 * 1024,
   maxModelBytes: int(env.MAX_MODEL_MB, 20) * 1024 * 1024,
-  clientDist: path.resolve(SERVER_ROOT, '..', 'client', 'dist'),
+  clientDist: path.resolve(SERVER_ROOT, '..', 'dist'),
   autoSeed: bool(env.AUTO_SEED, true),
   // Vercel runs the API as serverless functions: no persistent disk, one proxy in front.
   isServerless: Boolean(env.VERCEL),

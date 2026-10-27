@@ -15,6 +15,10 @@ export default defineConfig({
   },
   preview: { port: 5173 },
   build: {
+    // Built into the repository root (../dist) so hosting platforms and the Express server
+    // find the site at a fixed, simple location.
+    outDir: '../dist',
+    emptyOutDir: true,
     target: 'es2022',
     chunkSizeWarningLimit: 1600,
   },
