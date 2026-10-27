@@ -301,6 +301,30 @@ Set `NODE_ENV=production`, `MONGODB_URI`, `JWT_SECRET`, `COOKIE_SECURE=true` (be
 `CLIENT_ORIGIN` (your domain) and `TRUST_PROXY=1` when behind a reverse proxy. Keep
 `server/uploads` on persistent storage.
 
+### Deploying to Vercel
+
+The repo is Vercel-ready (`vercel.json` builds the client to `client/dist`, and `api/index.js`
+runs the Express API as a serverless function).
+
+1. Create a free **MongoDB Atlas** cluster (Vercel cannot run the embedded database). Add a
+   database user and, under *Network Access*, allow `0.0.0.0/0` (Vercel's IPs change).
+2. In Vercel: **Add New → Project → import this GitHub repo**. Leave the framework preset as
+   "Other"; the settings come from `vercel.json`.
+3. Add these **Environment Variables** before deploying:
+
+| Name | Value |
+| --- | --- |
+| `MONGODB_URI` | your Atlas string, e.g. `mongodb+srv://user:pass@cluster/ember_and_bean?retryWrites=true&w=majority` |
+| `JWT_SECRET` | 48+ random characters (`node -e "console.log(require('crypto').randomBytes(48).toString('hex'))"`) |
+| `ADMIN_EMAIL` | your admin sign-in email |
+| `ADMIN_PASSWORD` | a strong password (10+ characters); the first request creates the account and seeds the sample menu |
+
+4. Deploy, then sign in at `https://<your-domain>/admin`.
+
+Serverless limits: **file uploads are disabled** (no persistent disk), so in the dish editor paste
+an `https://` image or `.glb` URL instead. For real uploads, add object storage such as Vercel
+Blob or S3. Everything else works unchanged.
+
 ## API reference
 
 Public:

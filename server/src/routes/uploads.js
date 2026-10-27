@@ -8,6 +8,14 @@ import { HttpError } from '../middleware/errors.js';
 
 export const uploadsRouter = Router();
 
+// Serverless hosts have a read-only, non-persistent filesystem, so files cannot be stored there.
+uploadsRouter.use((req, res, next) => {
+  if (config.isServerless) {
+    return next(new HttpError(501, 'File uploads are not available on this deployment. Paste an https:// image or .glb URL instead.'));
+  }
+  next();
+});
+
 // Files are held in memory, checked by their magic bytes (not just the browser-supplied
 // mimetype), then written with a random name so user input never becomes a path.
 const SIGNATURES = {

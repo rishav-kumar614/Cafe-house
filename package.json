@@ -2,6 +2,7 @@
   "name": "ember-and-bean",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "description": "Immersive 3D multi-cuisine cafe website with menu, cart, ordering and admin.",
   "workspaces": [
     "client",

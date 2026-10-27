@@ -56,5 +56,7 @@ export const config = {
   maxModelBytes: int(env.MAX_MODEL_MB, 20) * 1024 * 1024,
   clientDist: path.resolve(SERVER_ROOT, '..', 'client', 'dist'),
   autoSeed: bool(env.AUTO_SEED, true),
-  trustProxy: int(env.TRUST_PROXY, 0),
+  // Vercel runs the API as serverless functions: no persistent disk, one proxy in front.
+  isServerless: Boolean(env.VERCEL),
+  trustProxy: int(env.TRUST_PROXY, env.VERCEL ? 1 : 0),
 };
